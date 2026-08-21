@@ -27,14 +27,21 @@ async def main():
         
         # Get proxy URL
         proxy_url = None
-        if proxy_config.get('useApifyProxy'):
-            proxy_url = Actor.create_proxy_url(
-                proxy_configuration=proxy_config,
-                session=f"instahyre_{search_query.replace(' ', '_')}"
-            )
-            Actor.log.info(f"Using proxy: {proxy_url[:50]}...")
+        proxy_settings = None
         
-        proxy_settings = _parse_proxy(proxy_url)
+        if proxy_config.get('useApifyProxy'):
+            # Create proxy configuration
+            proxy_cfg = await Actor.create_proxy_configuration(
+                groups=proxy_config.get('apifyProxyGroups', ['RESIDENTIAL'])
+            )
+            if proxy_cfg:
+                proxy_url = await proxy_cfg.new_url(
+                    session_id=f"instahyre_{search_query.replace(' ', '_')}"
+                )
+                Actor.log.info(f"Using proxy: {proxy_url[:50]}...")
+                proxy_settings = _parse_proxy(proxy_url)
+            else:
+                Actor.log.warning("No proxy configuration available")
         
         # Build search URL
         # Instahyre URL pattern: /search-jobs/?q=query&l=location
