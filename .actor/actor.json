@@ -1,0 +1,74 @@
+{
+  "actorSpecification": 1,
+  "name": "instahyre-scraper",
+  "title": "Instahyre Jobs Scraper — India Tech Jobs for AI Agents",
+  "description": "Extract high-paying tech jobs from Instahyre.com with salaries, skills, and company details. Bypasses Cloudflare. Perfect for AI agents (Claude, ChatGPT), recruitment automation, and salary benchmarking. Returns structured JSON with job titles, locations, salary ranges, required skills, and apply links. Works with Claude, ChatGPT, and AI agents via Apify MCP.",
+  "version": "0.1",
+  "buildTag": "latest",
+  "dockerfile": "./Dockerfile",
+  "output": {
+    "actorOutputSchemaVersion": 1,
+    "properties": {
+      "jobTitle": {
+        "type": "string",
+        "title": "Job Title",
+        "description": "Job position title",
+        "template": "{{{jobTitle}}}"
+      },
+      "companyName": {
+        "type": "string",
+        "title": "Company Name",
+        "description": "Hiring company",
+        "template": "{{{companyName}}}"
+      },
+      "location": {
+        "type": "string",
+        "title": "Location",
+        "description": "Job location",
+        "template": "{{{location}}}"
+      },
+      "salary": {
+        "type": "string",
+        "title": "Salary",
+        "description": "Salary range",
+        "template": "{{{salary}}}"
+      },
+      "experience": {
+        "type": "string",
+        "title": "Experience",
+        "description": "Required experience",
+        "template": "{{{experience}}}"
+      },
+      "skills": {
+        "type": "string",
+        "title": "Skills",
+        "description": "Required skills/technologies",
+        "template": "{{{skills}}}"
+      },
+      "jobDescription": {
+        "type": "string",
+        "title": "Job Description",
+        "description": "Full description",
+        "template": "{{{jobDescription}}}"
+      },
+      "applyUrl": {
+        "type": "string",
+        "title": "Apply URL",
+        "description": "Application link",
+        "template": "{{{applyUrl}}}"
+      },
+      "postedDate": {
+        "type": "string",
+        "title": "Posted Date",
+        "description": "When posted",
+        "template": "{{{postedDate}}}"
+      },
+      "scrapedAt": {
+        "type": "string",
+        "title": "Scraped At",
+        "description": "Timestamp",
+        "template": "{{{scrapedAt}}}"
+      }
+    }
+  }
+}
