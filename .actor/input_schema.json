@@ -43,9 +43,10 @@
       "prefill": 10
     },
     "proxyConfiguration": {
-      "type": "object",
       "title": "Proxy Configuration",
+      "type": "object",
       "description": "Apify proxy settings (RESIDENTIAL recommended for Cloudflare bypass)",
+      "editor": "proxy",
       "prefill": {
         "useApifyProxy": true,
         "apifyProxyGroups": ["RESIDENTIAL"]
